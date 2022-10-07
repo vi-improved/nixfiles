@@ -16,20 +16,6 @@
       options hid_apple swap_opt_cmd=1
       options hid_apple swap_fn_leftctrl=1
     '';
-  hardware.firmware = [
-    (pkgs.stdenvNoCC.mkDerivation {
-      name = "brcm-firmware";
-      buildCommand = ''
-        dir="$out/lib/firmware"
-        mkdir -p "$dir"
-        cp -r ${./wifi-firmware}/* "$dir"
-      '';
-    })
-  ];
-  services.xserver.libinput = {
-    enable = true;
-    touchpad.tapping = false;
-  };
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/3a5d8e4e-bbc8-4ba0-b014-8b68ef233f42";
       fsType = "btrfs";
