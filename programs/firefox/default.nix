@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home-manager.users.vi.home.file =
+  {
+      nordic = { source = ./firefox-nordic-theme; target = .mozilla/firefox/chrome; };
+  };
   home-manager.users.vi.programs.firefox = {
     enable = true;
     profiles = {
@@ -18,6 +22,7 @@
 	    url = "https://nix-community.github.io/home-manager/options.html";
 	  }
 	];
+        userChrome = builtins.readFile ./firefox-nordic-theme/userChrome.css;
       };
     };
   };

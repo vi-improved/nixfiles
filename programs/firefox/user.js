@@ -1375,3 +1375,4 @@ user_pref("ui.key.menuAccessKey", 0);
 user_pref("extensions.pocket.enabled", false);
 user_pref("identity.fxaccounts.enabled", false);
 user_pref("browser.urlbar.suggest.topsites", false);
+user_pref("browser.tabs.drawInTitlebar", true);
