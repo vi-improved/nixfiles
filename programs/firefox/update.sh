@@ -30,7 +30,7 @@ NC='\033[0m' # No Color
 
 # Argument defaults
 UPDATE='check'
-CONFIRM='yes'
+CONFIRM='no'
 OVERRIDE='user-overrides.js'
 BACKUP='multiple'
 COMPARE=false
@@ -388,3 +388,7 @@ getProfilePath # updates PROFILE_PATH or exits on error
 cd "$PROFILE_PATH" && update_userjs
 
 cd "$CURRDIR"
+
+git clone https://github.com/EliverLara/firefox-nordic-theme
+mv firefox-nordic-theme/theme nordic
+rm -rf firefox-nordic-theme
