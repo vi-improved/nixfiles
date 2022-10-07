@@ -72,7 +72,8 @@ myLayouts = toggleLayouts (noBorders Full) (tall ||| Mirror tall ||| Full)
 
 myStartupHook = do
     spawn "xsetroot -cursor_name left_ptr"
-    spawn "feh --bg-fill --no-fehbg ~/Pictures/Wallpapers/Nord/skyline.png"
+    spawn "dunst"
+    spawn "redshift"
 
 myXmobarPP = def
     { ppSep = colFocused " | "
