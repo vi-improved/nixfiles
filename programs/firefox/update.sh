@@ -390,5 +390,6 @@ cd "$PROFILE_PATH" && update_userjs
 cd "$CURRDIR"
 
 git clone https://github.com/EliverLara/firefox-nordic-theme
+rm -rf nordic
 mv firefox-nordic-theme/theme nordic
 rm -rf firefox-nordic-theme
