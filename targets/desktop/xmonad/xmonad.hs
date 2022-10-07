@@ -73,7 +73,6 @@ myLayouts = toggleLayouts (noBorders Full) (tall ||| Mirror tall ||| Full)
 myStartupHook = do
     spawn "xsetroot -cursor_name left_ptr"
     spawn "dunst"
-    spawn "redshift"
 
 myXmobarPP = def
     { ppSep = colFocused " | "
