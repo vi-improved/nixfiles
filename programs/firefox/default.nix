@@ -3,7 +3,7 @@
 {
   home-manager.users.vi.home.file =
   {
-      nordic = { source = ./nordic; target = ".mozilla/firefox/chrome/nordic"; recursive = true; };
+      nordic = { source = ./nordic; target = ".mozilla/firefox/chrome/"; recursive = true; };
   };
   home-manager.users.vi.programs.firefox = {
     enable = true;
