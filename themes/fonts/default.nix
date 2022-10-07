@@ -3,5 +3,6 @@
 {
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
+    cantarell-fonts
   ]; 
 }
