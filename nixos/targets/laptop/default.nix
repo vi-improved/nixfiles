@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../nixos
+    ../../../nixos
   ];
   hardware.acpilight.enable = true;
   networking = {

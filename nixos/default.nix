@@ -3,9 +3,7 @@
 
 {
   imports = [
-    ../../common
-    ../../themes/fonts
-    ../../themes/fonts/fontconfig.nix
+    ./themes/fonts
   ];
   security = {
     doas = {

@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../themes/nord
+  ];
   home-manager.users.vi = {
     home = {
       stateVersion = "22.11";
