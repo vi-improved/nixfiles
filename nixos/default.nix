@@ -12,18 +12,6 @@
     };
     sudo.enable = false;
   };
-  boot = {
-    loader = {
-      efi = {
-        efiSysMountPoint = "/boot/efi";
-      };
-      systemd-boot = {
-        enable = true;
-        consoleMode = "auto";
-      };
-      timeout = 0;
-    };
-  };
   documentation.man = {
     man-db.enable = false;
     mandoc.enable = true;
