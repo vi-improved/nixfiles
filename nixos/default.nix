@@ -4,6 +4,7 @@
 {
   imports = [
     ./themes/fonts
+    ./git
   ];
   security = {
     doas = {

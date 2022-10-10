@@ -9,26 +9,13 @@
   ];
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        version = 2;
-        efiSupport = true;
-        enableCryptodisk = true;
-      };
+      efi.efiSysMountPoint = "/boot/efi";
+      systemd-boot.enable = true;
     };
-    initrd = {
-      availableKernelModules = [
-        "aesni_intel"
-        "cryptd"
-      ];
-      luks.devices = {
-        crypt = {
-          device = "/dev/disk/by-uuid/95fdb7d9-4ddf-4740-96e1-dc538ca4f330";
-          preLVM = true;
-        };
-      };
-    };
+    extraModprobeConfig = ''
+      options hid_apple swap_fn_leftctrl=1
+      options hid_apple swap_opt_cmd=1
+    '';
   };
   networking.hostName = "vigilante";
   time.timeZone = "US/Michigan";
@@ -38,7 +25,7 @@
       buildCommand = ''
         dir="$out/lib/firmware"
         mkdir -p "$dir"
-        cp -r ${./wifi-firmware}/* "$dir"
+        cp -r ${./firmware}/* "$dir"
       '';
     })
   ];

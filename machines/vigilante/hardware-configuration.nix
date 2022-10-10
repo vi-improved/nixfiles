@@ -9,29 +9,29 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b5bc550f-9fdc-44ec-8184-0efe67398271";
+    { device = "/dev/disk/by-uuid/92609d2e-7722-449a-85fb-e3b3e9f6ccf7";
       fsType = "btrfs";
       options = [ "subvol=@nixos" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b5bc550f-9fdc-44ec-8184-0efe67398271";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos-home" ];
-    };
-
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b5bc550f-9fdc-44ec-8184-0efe67398271";
+    { device = "/dev/disk/by-uuid/92609d2e-7722-449a-85fb-e3b3e9f6ccf7";
       fsType = "btrfs";
       options = [ "subvol=@nixos-nix" ];
     };
 
-  fileSystems."/boot" =
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/92609d2e-7722-449a-85fb-e3b3e9f6ccf7";
+      fsType = "btrfs";
+      options = [ "subvol=@home" ];
+    };
+
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/5F66-17ED";
       fsType = "vfat";
     };
@@ -44,6 +44,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp230s0f1u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp229s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

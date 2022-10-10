@@ -12,4 +12,9 @@
       wifi.backend = "iwd";
     };
   };
+  home-manager.users.vi.xresources = {
+    properties = {
+      "Xft*dpi" = 144;
+    };
+  };
 }
