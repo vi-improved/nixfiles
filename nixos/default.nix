@@ -1,24 +1,43 @@
-# This module contains configuration to be shared across all NixOS machines
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./themes/fonts
-    ./git
-  ];
-  security = {
-    doas = {
-      enable = true;
-      extraRules = [ { groups = [ "wheel" ]; persist = true; setEnv = [ "NIX_PATH" ]; } ];
-    };
-    sudo.enable = false;
-  };
   documentation.man = {
     man-db.enable = false;
     mandoc.enable = true;
   };
   environment = {
+    defaultPackages = with pkgs; [
+      rsync
+      perl
+      strace
+    ];
     localBinInPath = true;
+    variables = { EDITOR = "vi"; VISUAL = "vi"; };
   };
-  system.stateVersion = "22.11"; 
+  fonts = {
+    fontconfig.defaultFonts = {
+      monospace = [ "Hack Nerd Font" ];
+      sansSerif = [ "Cantarell" ];
+    };
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "Hack" ]; })
+      cantarell-fonts
+    ];
+  };
+  nix.gc = {
+    automatic = true;
+    dates = "12:00";
+    options = "-d";
+  };
+  programs.dconf.enable = true;
+  security = {
+    doas = {
+      enable = true;
+      extraRules = [
+        { groups = [ "wheel" ]; persist = true; setEnv = [ "NIX_PATH" ]; }
+      ];
+    }; 
+    sudo.enable = false;
+  };
+  nixpkgs.config.allowUnfree = true;
 }
