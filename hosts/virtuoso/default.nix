@@ -18,13 +18,17 @@
       ../../nixos/modules/openrazer
       ../../nixos/modules/pipewire
       ../../nixos/modules/steam
-      ../../nixos/modules/xmonad
+      ../../nixos/modules/xorg
   ];
   users.users.vi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.fish;
   };
-  networking.hostName = "virtuoso";
+  networking = {
+    hostName = "virtuoso";
+    nameservers = [ "192.168.1.60" ];
+  };
   time.timeZone = "US/Michigan";
   system.stateVersion = "22.11";
 }

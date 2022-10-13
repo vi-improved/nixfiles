@@ -5,7 +5,6 @@
   home-manager.users.vi = {
     imports = [
       ../../home
-      ../../home/config
       ../../home/modules/bat
       ../../home/modules/btop
       ../../home/modules/dunst
@@ -17,6 +16,7 @@
       ../../home/modules/nnn
       ../../home/modules/rofi
       ../../home/modules/xmobar
+      ../../home/modules/xmonad
       ../../home/modules/zathura
     ];
     programs.git = {
