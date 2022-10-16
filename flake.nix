@@ -3,7 +3,7 @@
     nixpkgs.url = github:NixOS/nixpkgs;
     home-manager.url = github:nix-community/home-manager;
     nur.url = github:nix-community/NUR;
-    nixos-hardware.url = github:kekrby/nixos-hardware;
+    nixos-hardware.url = github:kekrby/nixos-hardware/master;
   };
 
   outputs = { self, nixpkgs, nur, home-manager, nixos-hardware }: {
