@@ -1,15 +1,16 @@
 import XMonad
 
 import System.Exit
+import XMonad.Actions.NoBorders
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
-import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
-import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.Ungrab
@@ -44,7 +45,7 @@ myConfig = def
     , ("M-S-r",        spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
     , ("M-f",          do
         sendMessage ToggleStruts
-        sendMessage $ Toggle "Full")
+        sendMessage $ Toggle NBFULL)
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5")
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
     ]
@@ -59,10 +60,10 @@ myFocusedBorderColor = nord9
 myFocusFollowsMouse = False
 myToggleStrutsKey XConfig{ modMask = m} = (m, xK_b)
 
-myManageHook = composeAll
-    [ isFullscreen --> doFullFloat ]
 
-myLayouts = toggleLayouts (noBorders Full) (tall ||| Mirror tall ||| Full)
+myLayouts = mkToggle1 NBFULL
+          . lessBorders OnlyScreenFloat
+          $ tall ||| Mirror tall ||| Full
     where
         tall = Tall nmaster delta ratio
         nmaster = 1

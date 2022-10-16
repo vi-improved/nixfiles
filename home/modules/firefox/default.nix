@@ -9,13 +9,6 @@
   };
   programs.firefox = {
     enable = true;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      bitwarden
-      ublock-origin
-      darkreader
-      sponsorblock
-      stylus
-    ];
     profiles = {
       vi = {
         extraConfig = builtins.readFile ../../files/firefox/user.js;
