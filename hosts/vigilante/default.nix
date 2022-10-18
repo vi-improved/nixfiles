@@ -10,15 +10,14 @@
       ./boot.nix
       ./home.nix
       ../../nixos
-      ../../nixos/modules/corectrl
       ../../nixos/modules/fish
-      ../../nixos/modules/gamemode
       ../../nixos/modules/git
       ../../nixos/modules/neovim
-      ../../nixos/modules/openrazer
       ../../nixos/modules/pipewire
-      ../../nixos/modules/steam
       ../../nixos/modules/xorg
+  ];
+  environment.systemPackages = with pkgs; [
+    krita
   ];
   hardware.firmware = [
     (pkgs.stdenvNoCC.mkDerivation {

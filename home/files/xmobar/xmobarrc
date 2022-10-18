@@ -1,6 +1,6 @@
 Config { font = "xft: Hack Nerd Font-11"
-       , bgColor = "#2e3440"
-       , fgColor = "#d8dee9"
+       , bgColor = "#11111b"
+       , fgColor = "#cdd6f4"
        , position = Top
        , allDesktops = True
        , borderWidth = 0

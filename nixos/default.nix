@@ -11,6 +11,10 @@
       perl
       strace
     ];
+    systemPackages = with pkgs; [
+      lxqt.lxqt-policykit
+      gparted
+    ];
     localBinInPath = true;
     variables = { EDITOR = "vi"; VISUAL = "vi"; };
   };
@@ -42,5 +46,6 @@
     }; 
     sudo.enable = false;
   };
+  services.sshd.enable = true;
   nixpkgs.config.allowUnfree = true;
 }
