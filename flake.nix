@@ -8,9 +8,7 @@
     nixos-hardware.url = github:kekrby/nixos-hardware/master;
   };
 
-  outputs = { self, nixpkgs, darwin, nur, home-manager }: {
-
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }: {
+  outputs = { self, nixpkgs, darwin, nur, home-manager, nixos-hardware, ... }: {
     nixosConfigurations.virtuoso = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
