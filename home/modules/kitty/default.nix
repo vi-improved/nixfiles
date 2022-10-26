@@ -7,6 +7,6 @@
       name = "Hack Nerd Font";
       size = 11;
     };
-    theme = "Nord";
+    theme = "Catppuccin-Mocha";
   };
 }

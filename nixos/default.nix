@@ -11,6 +11,10 @@
       perl
       strace
     ];
+    systemPackages = with pkgs; [
+      lxqt.lxqt-policykit
+      gparted
+    ];
     localBinInPath = true;
     variables = { EDITOR = "vi"; VISUAL = "vi"; };
   };
@@ -24,10 +28,13 @@
       cantarell-fonts
     ];
   };
-  nix.gc = {
-    automatic = true;
-    dates = "12:00";
-    options = "-d";
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    gc = {
+      automatic = true;
+      dates = "12:00";
+      options = "-d";
+    };
   };
   programs.dconf.enable = true;
   security = {
@@ -39,5 +46,6 @@
     }; 
     sudo.enable = false;
   };
+  services.sshd.enable = true;
   nixpkgs.config.allowUnfree = true;
 }

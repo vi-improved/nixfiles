@@ -1,15 +1,16 @@
 import XMonad
 
 import System.Exit
+import XMonad.Actions.NoBorders
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
-import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
-import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.Ungrab
@@ -44,7 +45,7 @@ myConfig = def
     , ("M-S-r",        spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
     , ("M-f",          do
         sendMessage ToggleStruts
-        sendMessage $ Toggle "Full")
+        sendMessage $ Toggle NBFULL)
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5")
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
     ]
@@ -54,15 +55,15 @@ myMenu = "rofi -modi run,drun,window -show drun"
 myScreenshot = "maim -s -u | xclip -selection clipboard -t image/png -i"
 myModMask = mod4Mask
 myBorderWidth = 2
-myNormalBorderColor = nord2
-myFocusedBorderColor = nord9
+myNormalBorderColor = col2
+myFocusedBorderColor = col9
 myFocusFollowsMouse = False
 myToggleStrutsKey XConfig{ modMask = m} = (m, xK_b)
 
-myManageHook = composeAll
-    [ isFullscreen --> doFullFloat ]
 
-myLayouts = toggleLayouts (noBorders Full) (tall ||| Mirror tall ||| Full)
+myLayouts = mkToggle1 NBFULL
+          . lessBorders OnlyScreenFloat
+          $ tall ||| Mirror tall ||| Full
     where
         tall = Tall nmaster delta ratio
         nmaster = 1
@@ -90,27 +91,27 @@ myXmobarPP = def
         formatUnfocused = wrap (colUnfocused "[") (colUnfocused "]") . colHiddenNoWindows . ppWindow
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 50
-        colCurrent = xmobarColor nord0 nord9 . xmobarBorder "Full" nord9 1
-        colVisible = xmobarColor nord0 nord10 . xmobarBorder "Full" nord10 1
-        colHidden = xmobarColor nord4 nord0
-        colHiddenNoWindows = xmobarColor nord3 nord0
-        colUrgent = xmobarColor nord0 nord4
-        colFocused = xmobarColor nord9 nord0
-        colUnfocused = xmobarColor nord4 nord0
+        colCurrent = xmobarColor col0 col9 . xmobarBorder "Full" col9 1
+        colVisible = xmobarColor col0 col10 . xmobarBorder "Full" col10 1
+        colHidden = xmobarColor col4 col0
+        colHiddenNoWindows = xmobarColor col3 col0
+        colUrgent = xmobarColor col0 col4
+        colFocused = xmobarColor col9 col0
+        colUnfocused = xmobarColor col4 col0
 
-nord0 = "#2e3440"
-nord1 = "#3b4252"
-nord2 = "#434c5e"
-nord3 = "#4c566a"
-nord4 = "#d8dee9"
-nord5 = "#e5e9f0"
-nord6 = "#eceff4"
-nord7 = "#8fbcbb"
-nord8 = "#88c0d0"
-nord9 = "#81a1c1"
-nord10 = "#5e81ac"
-nord11 = "#bf616a"
-nord12 = "#d08770"
-nord13 = "#ebcb8b"
-nord14 = "#a3be8c"
-nord15 = "#b48ead"
+col0 = "#11111b"
+col1 = "#313244"
+col2 = "#45475a"
+col3 = "#585b70"
+col4 = "#cdd6f4"
+col5 = "#bac2de"
+col6 = "#a6adc8"
+col7 = "#f5c2e7"
+col8 = "#b4befe"
+col9 = "#cba6f7"
+col10 = "#89b4fa"
+col11 = "#f38ba8"
+col12 = "#fab387"
+col13 = "#f9e2af"
+col14 = "#a6e3a1"
+col15 = "#94e2d5"
