@@ -19,6 +19,11 @@
       ../../home/modules/xmonad
       ../../home/modules/zathura
     ];
+    home = {
+      homeDirectory = "/home/vi";
+      stateVersion = "22.11";
+      username = "vi";
+    };
     programs.git = {
       userEmail = "vimproved@inventati.org";
       userName = "vimproved";

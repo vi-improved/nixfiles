@@ -4,4 +4,3 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.quitShortcut.disabled", true);
 user_pref("ui.key.menuAccessKey", 0);
 user_pref("extensions.pocket.enabled", false);
-user_pref("identity.fxaccounts.enabled", false);
